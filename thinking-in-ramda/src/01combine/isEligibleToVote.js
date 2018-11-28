@@ -7,9 +7,10 @@
 
 const OUR_COUNTRY = "CHINA";
 
-export const isEligibleToVote = person => {
-  if ((person.birthCountry === OUR_COUNTRY || Boolean(person.naturalizationDate)) && person.age >= 18) {
-    return true;
-  }
-  return false;
-};
+const wasBornInCountry = person => person.birthCountry === OUR_COUNTRY;
+const wasNaturalized = person => Boolean(person.naturalizationDate);
+const isOver18 = person => person.age >= 18;
+
+const isCitizen = person => wasBornInCountry(person) || wasNaturalized(person);
+
+export const isEligibleToVote = person => isOver18(person) && isCitizen(person);
