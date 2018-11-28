@@ -1,0 +1,19 @@
+{
+  "name": "thinking-in-ramda",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-preset-env": "^1.7.0",
+    "jest": "^23.6.0",
+    "prettier": "1.15.2"
+  },
+  "dependencies": {
+    "ramda": "^0.26.1"
+  }
+}
