@@ -8,9 +8,10 @@ import * as R from "ramda";
 
 const OUR_COUNTRY = "CHINA";
 
-const wasBornInCountry = person => person.birthCountry === OUR_COUNTRY;
-const wasNaturalized = person => Boolean(person.naturalizationDate);
-const isOver18 = person => person.age >= 18;
+const wasBornInCountry = R.propEq('birthCountry', OUR_COUNTRY);
+const wasNaturalized = R.propSatisfies(Boolean, 'naturalizationDate');
+const atLeast18 = R.flip(R.gte)(18);
+const isOver18 = R.propSatisfies(atLeast18, 'age');
 
 const isCitizen = R.either(wasBornInCountry, wasNaturalized);
 
