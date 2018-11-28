@@ -4,6 +4,7 @@
 // 1. at least 18 years old
 // 2. be a citizen in order to be able to vote.
 // Someone is a citizen if they were born in the country or if they later became a citizen through naturalization.
+import * as R from "ramda";
 
 const OUR_COUNTRY = "CHINA";
 
@@ -11,6 +12,6 @@ const wasBornInCountry = person => person.birthCountry === OUR_COUNTRY;
 const wasNaturalized = person => Boolean(person.naturalizationDate);
 const isOver18 = person => person.age >= 18;
 
-const isCitizen = person => wasBornInCountry(person) || wasNaturalized(person);
+const isCitizen = R.either(wasBornInCountry, wasNaturalized);
 
-export const isEligibleToVote = person => isOver18(person) && isCitizen(person);
+export const isEligibleToVote = R.both(isOver18, isCitizen);
