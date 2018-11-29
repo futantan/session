@@ -12,6 +12,8 @@ const Box = x => ({
   inspect: () => `Box(${x})`
 });
 
+Box.of = Box;
+
 const nextCharForNumberString = str =>
   Box(str)
     .map(s => s.trim())
@@ -23,6 +25,7 @@ const nextCharForNumberString = str =>
 const result = nextCharForNumberString("  64 ");
 
 // const map = (f, F) => F.map(f);
+const pure = (F, v) => F.of(v);
 
 const nextCharForNumberString2 = str => {
   const transform = R.compose(
@@ -32,7 +35,7 @@ const nextCharForNumberString2 = str => {
     r => parseInt(r),
     s => s.trim()
   );
-  return R.map(transform, Box(str));
+  return R.map(transform)(pure(Box, str));
 };
 
 const result2 = nextCharForNumberString2("  64 ");
