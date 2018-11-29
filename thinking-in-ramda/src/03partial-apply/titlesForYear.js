@@ -4,7 +4,7 @@ import * as R from "ramda";
 const publishedInYear = R.curry((book, year) => book.year === year);
 
 const titlesForYear = (books, year) => {
-  const selected = R.filter(R.flip(publishedInYear)(year), books);
+  const selected = R.filter(publishedInYear(R.__, year), books);
 
   return R.map(book => book.title, selected);
 };
