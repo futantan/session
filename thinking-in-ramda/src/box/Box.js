@@ -4,6 +4,7 @@
 // P.then(xx).then(xx)
 
 // https://egghead.io/courses/professor-frisby-introduces-composable-functional-javascript
+import * as R from "ramda";
 
 const Box = x => ({
   map: f => Box(f(x)),
@@ -17,8 +18,24 @@ const nextCharForNumberString = str =>
     .map(r => parseInt(r))
     .map(i => i + 1)
     .map(i => String.fromCharCode(i))
-    .fold(c => c.toLowerCase());
+    .map(c => c.toLowerCase());
 
 const result = nextCharForNumberString("  64 ");
 
-console.log(result);
+const map = (f, F) => F.map(f);
+
+const nextCharForNumberString2 = str => {
+  const transform = R.compose(
+    c => c.toLowerCase(),
+    i => String.fromCharCode(i),
+    i => i + 1,
+    r => parseInt(r),
+    s => s.trim()
+  );
+  return map(transform, Box(str));
+};
+
+const result2 = nextCharForNumberString2("  64 ");
+
+console.log(result.inspect());
+console.log(result2.inspect());
