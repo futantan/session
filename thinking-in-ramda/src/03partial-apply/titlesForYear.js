@@ -4,7 +4,7 @@ import * as R from "ramda";
 const publishedInYear = year => book => book.year === year;
 
 const titlesForYear = (books, year) => {
-  const selected = R.filter(book => publishedInYear(year)(book), books);
+  const selected = R.filter(publishedInYear(year), books);
 
   return R.map(book => book.title, selected);
 };
