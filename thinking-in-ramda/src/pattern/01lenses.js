@@ -1,11 +1,7 @@
 // view set over
+import * as R from "ramda";
 
 export const upperUserFirstName = user => {
-  return {
-    ...user,
-    name: {
-      ...user.name,
-      first: user.name.first.toUpperCase()
-    }
-  };
+  const firstName = R.lensPath(["name", "first"]);
+  return R.over(firstName, R.toUpper)(user);
 };
