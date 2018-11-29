@@ -7,6 +7,7 @@
 
 const Box = x => ({
   map: f => Box(f(x)),
+  fold: f => f(x),
   inspect: () => `Box(${x})`
 });
 
@@ -16,7 +17,7 @@ const nextCharForNumberString = str =>
     .map(r => parseInt(r))
     .map(i => i + 1)
     .map(i => String.fromCharCode(i))
-    .map(c => c.toLowerCase());
+    .fold(c => c.toLowerCase());
 
 const result = nextCharForNumberString("  64 ");
 
