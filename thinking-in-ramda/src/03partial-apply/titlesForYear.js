@@ -3,10 +3,10 @@ import * as R from "ramda";
 
 const publishedInYear = R.curry((year, book) => book.year === year);
 
-const titlesForYear = (books, year) => {
-  const selected = R.filter(publishedInYear(year), books);
-
-  return R.map(book => book.title, selected);
-};
+const titlesForYear = (books, year) =>
+  R.compose(
+    R.map(book => book.title),
+    R.filter(publishedInYear(year))
+  )(books);
 
 export default titlesForYear;
