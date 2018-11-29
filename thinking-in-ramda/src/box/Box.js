@@ -22,7 +22,7 @@ const nextCharForNumberString = str =>
 
 const result = nextCharForNumberString("  64 ");
 
-const map = (f, F) => F.map(f);
+// const map = (f, F) => F.map(f);
 
 const nextCharForNumberString2 = str => {
   const transform = R.compose(
@@ -32,7 +32,7 @@ const nextCharForNumberString2 = str => {
     r => parseInt(r),
     s => s.trim()
   );
-  return map(transform, Box(str));
+  return R.map(transform, Box(str));
 };
 
 const result2 = nextCharForNumberString2("  64 ");
