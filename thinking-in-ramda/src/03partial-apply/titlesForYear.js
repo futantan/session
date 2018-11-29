@@ -3,6 +3,7 @@ import * as R from "ramda";
 
 const publishedInYear = R.curry((year, book) => book.year === year);
 
+// reverse order?
 const titlesForYear = (books, year) =>
   R.compose(
     R.pluck('title'),
