@@ -2,3 +2,8 @@
 // we want to apply a sequence of operations on it
 // [].map(xx).map(xx)
 // P.then(xx).then(xx)
+
+const Box = x => ({
+  map: f => Box(f(x)),
+  inspect: () => `Box(${x})`
+});
