@@ -5,7 +5,7 @@ const publishedInYear = R.curry((year, book) => book.year === year);
 
 const titlesForYear = (books, year) =>
   R.compose(
-    R.map(book => book.title),
+    R.pluck('title'),
     R.filter(publishedInYear(year))
   )(books);
 
